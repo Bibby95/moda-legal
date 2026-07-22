@@ -1,7 +1,7 @@
 # MODA Privacy Policy
 
 **Effective date:** July 16, 2026
-**Last updated:** July 16, 2026
+**Last updated:** July 22, 2026
 
 MODA is made by Lorenzo Ventures LLC ("we," "us"). This policy explains what information the MODA app collects, why, and what we do with it — in plain language, because that's how we'd want it explained to us.
 
@@ -19,12 +19,15 @@ MODA is made by Lorenzo Ventures LLC ("we," "us"). This policy explains what inf
 
 **Purchase information.** If you subscribe to MODA+, the purchase is processed entirely by Apple. We receive subscription status (via RevenueCat, our subscription-management provider) — not your payment details. We never see your card number.
 
+**Location (optional, for weather).** If you allow location access, MODA uses your device's location to fetch the local weather forecast so outfit suggestions match the conditions outside. Your coordinates are sent to our weather providers (Open-Meteo and OpenStreetMap's Nominatim, for the area name) to answer that request; they are not stored by us, not saved to your account, and not used for anything else. Weather is optional — if you decline location access, everything else in the app works normally.
+
 ## What we don't do
 
 - We do **not** sell your personal information, ever.
 - We do **not** show ads or share your data with advertisers or data brokers.
 - We do **not** scan or upload your photo library — only the photos you explicitly choose.
-- We do **not** collect your location, contacts, or anything the app doesn't need.
+- We do **not** track your location. If you enable the weather feature, your coordinates are used only to fetch the forecast (see above) — never stored, never tied to your account.
+- We do **not** collect your contacts or anything the app doesn't need.
 
 ## Where your data lives
 
@@ -56,7 +59,3 @@ Questions, requests, or complaints:
 
 **Email:** support@lorenzoventures.co
 **Lorenzo Ventures LLC**
-
----
-
-*Internal note (strip before publication): draft for founder review — not yet reviewed by counsel. Claims cross-checked against actual app behavior on develop @ 7b7efa8 (Supabase auth, expo-image-picker camera/library, PostHog via utils/analytics.ts, Sentry via app/_layout.tsx, RevenueCat via services/purchases.ts, in-app account deletion). Must stay consistent with the App Privacy nutrition label (`mo-appstore-submission-readiness`).*

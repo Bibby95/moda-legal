@@ -45,7 +45,3 @@ These terms are governed by the laws of the State of Florida, USA, without regar
 
 **Email:** support@lorenzoventures.co
 **Lorenzo Ventures LLC**
-
----
-
-*Internal note (strip before publication): draft for founder review — not yet reviewed by counsel. Subscription language must match final ASC SKU config (services/purchases.ts / spec §1.4) before publication.*
