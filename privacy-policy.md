@@ -20,7 +20,7 @@ MODA is made by Lorenzo Ventures LLC ("we," "us"). This policy explains what inf
 
 Neither provider receives your account information, and neither is permitted to use your photos for their own purposes. Each handles what it receives under its own privacy policy, linked below.
 
-**Usage analytics.** We use PostHog to understand how the app is used — events like "item added," "wear logged," or "paywall viewed," along with basic device information (device model, OS version, app version). We use this to see what's working and what's broken. We do not use analytics data for advertising.
+**Usage analytics.** We use PostHog to understand how the app is used — events like "item added," "wear logged," or "paywall viewed." We use this to see what's working and what's broken. We do not use analytics data for advertising.
 
 **Crash reports.** If the app crashes, Sentry collects a technical crash report (stack trace, device model, OS version) so we can fix it. Crash reports are not used for any other purpose.
 
