@@ -1,12 +1,313 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MODA — Legal</title><link rel="stylesheet" href="style.css">
-</head><body><div class="wrap">
-<h1>MODA</h1>
-<p style="margin-top:0">Legal &amp; support for the MODA app, by Lorenzo Ventures LLC.</p>
-<a class="card" href="privacy/"><b>Privacy Policy</b><span>What we collect, why, and your controls. Effective July 27, 2026.</span></a>
-<a class="card" href="terms/"><b>Terms of Service</b><span>The agreement covering your use of MODA. Effective July 16, 2026.</span></a>
-<a class="card" href="support/"><b>Support</b><span>support@lorenzoventures.co — we read every message.</span></a>
-<footer>MODA is made by Lorenzo Ventures LLC.</footer>
-</div></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moda — Every item earns its place.</title>
+<meta name="description" content="Moda is a wardrobe you can actually see — and a number that tells you what each piece is worth to you. Coming to iPhone.">
+<link rel="icon" href="data:,">
+<style>
+  @font-face {
+    font-family: "Fraunces";
+    src: url("assets/fonts/Fraunces-Variable.ttf") format("truetype-variations"),
+         url("assets/fonts/Fraunces-Variable.ttf") format("truetype");
+    font-weight: 300 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Hanken Grotesk";
+    src: url("assets/fonts/HankenGrotesk-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Hanken Grotesk";
+    src: url("assets/fonts/HankenGrotesk-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-display: swap;
+  }
+
+  :root {
+    --paper: #FAFAF7;
+    --ink: #191814;
+    --ink2: #55524A;
+    --muted: #706C62;
+    --rule: #E8E5DD;
+    --salmon: #D99E82;
+    --salmon-pressed: #C58F6E;
+    --lavender: #7C4EBB;
+    --error: #B3402A;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  .wordmark {
+    display: block;
+    width: 160px;
+    height: auto;
+    margin: 0 0 56px;
+  }
+
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin: 0 0 20px;
+  }
+
+  .hero p {
+    color: var(--ink2);
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0 0 28px;
+    max-width: 520px;
+  }
+
+  .cta {
+    display: inline-block;
+    background: var(--salmon);
+    color: var(--ink);
+    font-family: "Hanken Grotesk", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+  }
+  .cta:hover, .cta:focus-visible { background: var(--salmon-pressed); }
+
+  .micro {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 14px 0 0;
+  }
+
+  .value-props {
+    margin: 64px 0;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .value-prop { margin: 0 0 32px; }
+  .value-prop:last-child { margin-bottom: 0; }
+  .value-prop h2 {
+    font-family: "Hanken Grotesk", sans-serif;
+    font-weight: 800;
+    font-size: 19px;
+    letter-spacing: -0.2px;
+    margin: 0 0 8px;
+  }
+  .value-prop p {
+    color: var(--ink2);
+    margin: 0;
+  }
+
+  .capture {
+    margin: 64px 0 0;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+  }
+  .capture h2 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 400;
+    font-size: 28px;
+    letter-spacing: -0.3px;
+    margin: 0 0 12px;
+  }
+  .capture > p {
+    color: var(--ink2);
+    margin: 0 0 24px;
+    max-width: 480px;
+  }
+
+  #waitlist-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  #email {
+    flex: 1 1 240px;
+    min-width: 0;
+    font-family: "Hanken Grotesk", sans-serif;
+    font-size: 16px;
+    padding: 13px 16px;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ink);
+  }
+  #email:focus { outline: 2px solid var(--lavender); outline-offset: 1px; }
+  #waitlist-form button {
+    flex: 0 0 auto;
+  }
+  #waitlist-form button:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .privacy-line {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 14px 0 0;
+  }
+  .privacy-line a { color: var(--lavender); }
+
+  #form-status {
+    margin-top: 14px;
+    font-size: 14px;
+    min-height: 20px;
+  }
+  #form-status[data-kind="success"] { color: var(--ink); font-weight: 600; }
+  #form-status[data-kind="error"] { color: var(--error); }
+
+  footer {
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--lavender); }
+
+  @media (max-width: 420px) {
+    h1 { font-size: 34px; }
+    .capture h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="wordmark" src="assets/wordmark/moda-wordmark-light.svg" alt="Moda">
+
+  <section class="hero">
+    <h1>Every item earns its place.</h1>
+    <p>Moda is a wardrobe you can actually see — and a number that tells you what each piece is worth to you. Coming to iPhone.</p>
+    <a class="cta" href="#capture">Join the waitlist</a>
+    <p class="micro">No spam. One email when Moda is ready.</p>
+  </section>
+
+  <section class="value-props">
+    <div class="value-prop">
+      <h2>Cost-per-wear, on every piece.</h2>
+      <p>Log what you wear and Moda does the division. The coat you reach for every week earns its price. The one you don't shows you why.</p>
+    </div>
+    <div class="value-prop">
+      <h2>Your whole wardrobe, in one place.</h2>
+      <p>Photograph a piece once. Moda lifts it off the background and files it by category, color, brand, and season — so you can see everything you own at a glance.</p>
+    </div>
+    <div class="value-prop">
+      <h2>Outfits planned before the morning.</h2>
+      <p>Pair pieces on a canvas, put the look on your calendar, and log what you actually wore. Packing lists build themselves from your own wardrobe.</p>
+    </div>
+  </section>
+
+  <section class="capture" id="capture">
+    <h2>Be first in.</h2>
+    <p>Moda launches on the App Store this year. Leave your email and you'll hear once — when it's live.</p>
+    <form id="waitlist-form" novalidate>
+      <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+      <button class="cta" type="submit" id="submit-btn">Join the waitlist</button>
+    </form>
+    <p class="privacy-line">Email only. Nothing else, and nothing shared. See our <a href="privacy/">privacy policy</a>.</p>
+    <p id="form-status" role="status" aria-live="polite"></p>
+  </section>
+
+  <footer>
+    <p>Moda — a Lorenzo Ventures LLC product</p>
+    <p><a href="privacy/">Privacy policy</a> · <a href="terms/">Terms</a> · <a href="support/">Support</a></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var SUPABASE_URL = "https://pzporgvrezjmqtjezadk.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6cG9yZ3ZyZXpqbXF0amV6YWRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzExMDE0NDksImV4cCI6MjA4NjY3NzQ0OX0.nmmKQuQ8HozG514BeMDIrPcKs_W2rluL-UmR7fgdC_c";
+
+  var form = document.getElementById("waitlist-form");
+  var emailInput = document.getElementById("email");
+  var submitBtn = document.getElementById("submit-btn");
+  var status = document.getElementById("form-status");
+
+  var MESSAGES = {
+    success: "You're on the list. We'll email you once.",
+    duplicate: "You're already on the list.",
+    error: "Couldn't save that address — check it and try again.",
+    invalid: "That doesn't look like an email address."
+  };
+
+  function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  }
+
+  function setStatus(kind, text) {
+    status.textContent = text || "";
+    if (kind) {
+      status.setAttribute("data-kind", kind);
+    } else {
+      status.removeAttribute("data-kind");
+    }
+  }
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var email = emailInput.value.trim();
+
+    if (!isValidEmail(email)) {
+      setStatus("error", MESSAGES.invalid);
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Joining…";
+    setStatus(null, "");
+
+    fetch(SUPABASE_URL + "/rest/v1/waitlist", {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email: email })
+    }).then(function (res) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Join the waitlist";
+
+      if (res.status === 201) {
+        setStatus("success", MESSAGES.success);
+        form.reset();
+      } else if (res.status === 409) {
+        setStatus(null, MESSAGES.duplicate);
+      } else {
+        setStatus("error", MESSAGES.error);
+      }
+    }).catch(function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Join the waitlist";
+      setStatus("error", MESSAGES.error);
+    });
+  });
+})();
+</script>
+</body>
+</html>
