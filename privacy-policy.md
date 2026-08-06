@@ -5,7 +5,7 @@
 
 MODA is made by Lorenzo Ventures LLC ("we," "us"). This policy explains what information the MODA app collects, why, and what we do with it — in plain language, because that's how we'd want it explained to us.
 
-**The short version:** we collect your email to run your account, the photos and wardrobe details you add, and anonymous-by-default usage and crash data to make the app better. We never sell your data. You can export or delete everything, any time, from inside the app.
+**The short version:** we collect your email to run your account, the photos and wardrobe details you add, and anonymous-by-default usage and crash data to make the app better. We never sell your data. You can delete everything, any time, from inside the app, and ask us for a copy of your data whenever you want it.
 
 ## What we collect
 
@@ -56,7 +56,7 @@ Your data is kept for as long as your account exists. Delete your account (Setti
 
 ## Your choices and rights
 
-- **Export:** you can export your wardrobe data from the app.
+- **Export:** email us at the address below and we will send you a copy of your wardrobe data. (A one-tap in-app export is planned; it is not in this version, so we do it by request.)
 - **Delete:** you can delete individual items, or your entire account, in-app — no email or support ticket required.
 - **Access/correction:** everything we hold about your wardrobe is visible and editable in the app. For anything else, contact us at the address below.
 
