@@ -1,7 +1,7 @@
 # MODA Privacy Policy
 
-**Effective date:** July 27, 2026
-**Last updated:** July 27, 2026
+**Effective date:** August 7, 2026
+**Last updated:** August 7, 2026
 
 MODA is made by Lorenzo Ventures LLC ("we," "us"). This policy explains what information the MODA app collects, why, and what we do with it — in plain language, because that's how we'd want it explained to us.
 
@@ -24,7 +24,7 @@ Neither provider receives your account information, and neither is permitted to 
 
 **Crash reports.** If the app crashes, Sentry collects a technical crash report (stack trace, device model, OS version) so we can fix it. Crash reports are not used for any other purpose.
 
-**Purchase information.** If you subscribe to MODA+, the purchase is processed entirely by Apple. We receive subscription status (via RevenueCat, our subscription-management provider) — not your payment details. We never see your card number.
+**Purchase information.** None. MODA is free — there is no subscription and nothing to buy inside the app — so there is no purchase information to collect. If we ever offer a paid tier, Apple would process the payment (we would never see your card number), we would receive only whether the subscription is active, and we would update this policy before that shipped.
 
 **Location (optional, for weather).** If you allow location access, MODA uses your device's location to fetch the local weather forecast so outfit suggestions match the conditions outside. Your coordinates are sent to our weather providers (Open-Meteo and OpenStreetMap's Nominatim, for the area name) to answer that request; they are not stored by us, not saved to your account, and not used for anything else. Weather is optional — if you decline location access, everything else in the app works normally.
 
@@ -38,14 +38,13 @@ Neither provider receives your account information, and neither is permitted to 
 
 ## Where your data lives
 
-Your account and wardrobe data are stored with Supabase, our database and authentication provider. Analytics events go to PostHog, crash reports to Sentry, and subscription status to RevenueCat. Photos you submit to an AI feature are sent to Google (Gemini API) or remove.bg for that request only, as described above. Each of these providers processes data on our behalf under their own security and privacy commitments; none of them are permitted to use your data for their own purposes.
+Your account and wardrobe data are stored with Supabase, our database and authentication provider. Analytics events go to PostHog and crash reports to Sentry. Photos you submit to an AI feature are sent to Google (Gemini API) or remove.bg for that request only, as described above. Each of these providers processes data on our behalf under their own security and privacy commitments; none of them are permitted to use your data for their own purposes.
 
 The providers we use, and their privacy policies:
 
 - Supabase — database, authentication, and file storage ([supabase.com/privacy](https://supabase.com/privacy))
 - PostHog — usage analytics ([posthog.com/privacy](https://posthog.com/privacy))
 - Sentry — crash reporting ([sentry.io/privacy](https://sentry.io/privacy))
-- RevenueCat — subscription management ([revenuecat.com/privacy](https://www.revenuecat.com/privacy))
 - Google (Gemini API) — AI processing of photos you submit ([policies.google.com/privacy](https://policies.google.com/privacy))
 - remove.bg — background removal ([remove.bg/privacy](https://www.remove.bg/privacy))
 - Open-Meteo and OpenStreetMap Nominatim — weather forecast and area name, from coordinates only

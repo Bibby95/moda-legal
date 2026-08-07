@@ -1,7 +1,7 @@
 # MODA Terms of Service
 
-**Effective date:** July 16, 2026
-**Last updated:** July 16, 2026
+**Effective date:** August 7, 2026
+**Last updated:** August 7, 2026
 
 These terms are an agreement between you and Lorenzo Ventures LLC ("we," "us") covering your use of the MODA app. By creating an account or using MODA, you agree to them.
 
@@ -17,9 +17,11 @@ You need an account to use MODA. Keep your credentials secure; you're responsibl
 
 The photos and wardrobe information you add to MODA are yours. You give us only the limited license we need to store, process, and display that content back to you — that's it. We don't publish your content, and we don't use it to train models or for advertising. You're responsible for making sure you have the right to upload what you add.
 
-## 4. MODA+ subscriptions
+## 4. Paid features
 
-Parts of MODA require a paid MODA+ subscription (monthly or annual, with pricing shown in the app). Subscriptions are billed and auto-renewed through your Apple ID, and can be cancelled any time in your Apple subscription settings — cancellation takes effect at the end of the current billing period. Free trials, where offered, convert to a paid subscription unless cancelled before the trial ends. Refunds are handled by Apple under Apple's terms. If a one-time lifetime purchase is offered, "lifetime" means the lifetime of the MODA product.
+MODA is free. Every feature is included at no cost, there is no subscription, and there is nothing to buy inside the app.
+
+If we introduce a paid tier in a future version, these terms will apply to it: subscriptions would be billed and auto-renewed through your Apple ID and cancellable any time in your Apple subscription settings, with cancellation taking effect at the end of the current billing period; a free trial, where offered, converts to a paid subscription unless cancelled before it ends; refunds are handled by Apple under Apple's terms; and if a one-time lifetime purchase is offered, "lifetime" means the lifetime of the MODA product. We will say so in the app before any of that applies to you.
 
 ## 5. Acceptable use
 
