@@ -1,0 +1,23 @@
+:root { --canvas:#FAFAF7; --surface:#FFFFFF; --ink:#191814; --ink2:#55524A; --muted:#706C62; --rule:#E8E5DD; --accent:#2D958C; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--canvas); color:var(--ink);
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-text-size-adjust:100%; }
+.wrap { max-width:680px; margin:0 auto; padding:48px 24px 96px; }
+h1 { font-size:32px; line-height:1.2; letter-spacing:-0.5px; margin:0 0 8px; }
+h2 { font-size:20px; letter-spacing:-0.2px; margin:40px 0 12px; padding-top:20px; border-top:1px solid var(--rule); }
+p, li { color:var(--ink2); }
+strong { color:var(--ink); }
+a { color:var(--accent); }
+ul { padding-left:22px; }
+.home { display:inline-block; margin-bottom:28px; font-size:14px; color:var(--muted); text-decoration:none; }
+.home:hover { color:var(--accent); }
+footer { margin-top:64px; padding-top:20px; border-top:1px solid var(--rule); font-size:13px; color:var(--muted); }
+.card { display:block; background:var(--surface); border:1px solid var(--rule); border-radius:14px;
+  padding:18px 20px; margin:12px 0; text-decoration:none; color:var(--ink); }
+.card:hover { border-color:var(--accent); }
+.card b { display:block; font-size:17px; margin-bottom:3px; }
+.card span { font-size:14px; color:var(--muted); }
+@media (prefers-color-scheme: dark) {
+  :root { --canvas:#131211; --surface:#1C1A18; --ink:#F5F3EE; --ink2:#C9C4BA; --muted:#8F8A80; --rule:#2E2B27; --accent:#5FC7BC; }
+}
