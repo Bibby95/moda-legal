@@ -1,7 +1,80 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Moda — Legal</title><link rel="stylesheet" href="style.css"></head>
-<body><main style="max-width:640px;margin:4rem auto;padding:0 1rem;font-family:system-ui,sans-serif">
-<h1>Moda</h1><p>Legal &amp; support pages:</p>
-<ul><li><a href="privacy/">Privacy Policy</a></li><li><a href="terms/">Terms of Service</a></li><li><a href="support/">Support</a></li></ul>
-</main></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Moda — Every item earns its place</title>
+  <meta name="description" content="Moda is a wardrobe you can actually see — and a number that tells you what each piece is worth to you. Coming to iPhone." />
+  <link rel="canonical" href="https://bibby95.github.io/moda-legal/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bibby95.github.io/moda-legal/" />
+  <meta property="og:site_name" content="Moda" />
+  <meta property="og:title" content="Moda — Every item earns its place" />
+  <meta property="og:description" content="Moda is a wardrobe you can actually see — and a number that tells you what each piece is worth to you. Coming to iPhone." />
+  <meta property="og:image" content="https://bibby95.github.io/moda-legal/assets/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Moda — Every item earns its place" />
+  <meta name="twitter:description" content="Moda is a wardrobe you can actually see — and a number that tells you what each piece is worth to you. Coming to iPhone." />
+  <meta name="twitter:image" content="https://bibby95.github.io/moda-legal/assets/images/og-image.png" />
+
+  <link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<main class="landing">
+
+  <section class="hero">
+    <p class="wordmark">moda</p>
+    <h1>Every item earns its place.</h1>
+    <p class="lede">Moda is a wardrobe you can actually see — and a number that tells you what each piece is worth to you. Coming to iPhone.</p>
+    <a class="btn" href="#waitlist">Join the waitlist</a>
+    <p class="fine">No spam. One email when Moda is ready.</p>
+  </section>
+
+  <section class="props">
+    <div class="prop">
+      <h2>Cost-per-wear, on every piece.</h2>
+      <p>Log what you wear and Moda does the division. The coat you reach for every week earns its price. The one you don't shows you why.</p>
+    </div>
+    <div class="prop">
+      <h2>Your whole wardrobe, in one place.</h2>
+      <p>Photograph a piece once. Moda lifts it off the background and files it by category, color, brand, and season — so you can see everything you own at a glance.</p>
+    </div>
+    <div class="prop">
+      <h2>Outfits planned before the morning.</h2>
+      <p>Pair pieces on a canvas, put the look on your calendar, and log what you actually wore. Packing lists build themselves from your own wardrobe.</p>
+    </div>
+  </section>
+
+  <section class="capture" id="waitlist">
+    <h2>Be first in.</h2>
+    <p>Moda launches on the App Store this year. Leave your email and you'll hear once — when it's live.</p>
+
+    <form id="waitlist-form" novalidate>
+      <div class="field-row">
+        <input type="email" id="waitlist-email" name="email" placeholder="your@email.com" autocomplete="email" required />
+        <button type="submit" id="waitlist-submit">Join the waitlist</button>
+      </div>
+      <p class="fine">Email only. Nothing else, and nothing shared. See our <a href="privacy/">privacy policy</a>.</p>
+      <p class="status" id="waitlist-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <footer>
+    <p>Moda — a Lorenzo Ventures LLC product</p>
+    <p><a href="privacy/">Privacy policy</a> · <a href="terms/">Terms</a> · <a href="support/">Support</a></p>
+  </footer>
+
+</main>
+
+<script src="waitlist.js"></script>
+</body>
+</html>
