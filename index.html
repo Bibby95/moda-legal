@@ -171,6 +171,8 @@
     .primary-cta { min-height: 56px; padding: 0 24px; font-weight: 750; }
     .primary-cta span { font-size: 1.1rem; }
     .micro { color: var(--muted); font-size: .82rem; line-height: 1.4; }
+    .hero-secondary-cta { color: var(--plum); font-weight: 700; font-size: .95rem; text-decoration: underline; text-decoration-color: rgba(79,35,79,.35); }
+    .hero-secondary-cta:hover { color: var(--ink); }
 
     .hero-art {
       position: relative;
@@ -483,7 +485,7 @@
         <div class="eyebrow">Your wardrobe, made visible</div>
         <h1>Every item <em>earns</em> its place.</h1>
         <p class="hero-copy">Know what you own. Wear more of it. Understand what it’s worth. Moda turns your real wardrobe into something you can see, plan, and learn from.</p>
-        <div class="hero-actions">
+        <div class="hero-actions" id="hero-actions">
           <a class="primary-cta" href="#waitlist">Join the waitlist <span>→</span></a>
           <div class="micro">Coming first to iPhone<br>No spam. One email when ready.</div>
         </div>
@@ -620,6 +622,8 @@
     els.forEach(el => io.observe(el));
 
   </script>
+  <script src="config.js"></script>
+  <script src="hero-cta.js"></script>
   <script src="waitlist.js"></script>
 </body>
 </html>
