@@ -59,6 +59,13 @@
     }
   }
 
+  var downloadLink = document.getElementById("download-appstore-cta");
+  if (downloadLink) {
+    downloadLink.addEventListener("click", function () {
+      track("cta_appstore_click");
+    });
+  }
+
   var actions = document.getElementById("hero-actions");
   if (!actions) return;
 

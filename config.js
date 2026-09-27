@@ -12,5 +12,5 @@
 window.MODA_LANDING_CONFIG = {
   CTA_URL: null,
   LAUNCHED: true,
-  APP_STORE_URL: "https://apps.apple.com/app/id6780327914",
+  APP_STORE_URL: "https://apps.apple.com/us/app/moda-smart-wardrobe-outfits/id6780327914",
 };

@@ -404,6 +404,8 @@
       font-weight: 800;
       cursor: pointer;
     }
+    .store-cta { margin-top: 32px; background: var(--acid); color: var(--ink); }
+    .store-cta:hover { background: white; color: var(--ink); }
     .form-note { font-size: .75rem !important; color: rgba(255,255,255,.5) !important; margin-top: 13px !important; }
     .status { min-height: 1.4em; margin: 16px auto 0 !important; font-weight: 750; font-size: .95rem !important; }
     .status-success { color: var(--acid) !important; }
@@ -475,7 +477,7 @@
   <div class="nav-wrap">
     <nav class="nav shell" aria-label="Primary">
       <a class="brand" href="#top" aria-label="Moda home"><span class="mark">m</span><span>moda</span></a>
-      <a class="nav-cta" href="#waitlist">Join the waitlist <span>↗</span></a>
+      <a class="nav-cta" href="https://apps.apple.com/us/app/moda-smart-wardrobe-outfits/id6780327914" target="_blank" rel="noopener">Download on iPhone <span>↗</span></a>
     </nav>
   </div>
 
@@ -486,8 +488,8 @@
         <h1>Every item <em>earns</em> its place.</h1>
         <p class="hero-copy">Know what you own. Wear more of it. Understand what it’s worth. Moda turns your real wardrobe into something you can see, plan, and learn from.</p>
         <div class="hero-actions" id="hero-actions">
-          <a class="primary-cta" href="#waitlist">Join the waitlist <span>→</span></a>
-          <div class="micro">Coming first to iPhone<br>No spam. One email when ready.</div>
+          <a class="primary-cta" id="hero-appstore-cta" href="https://apps.apple.com/us/app/moda-smart-wardrobe-outfits/id6780327914" target="_blank" rel="noopener">Get it on the App Store <span>→</span></a>
+          <div class="micro">Available now on iPhone.<br>Free to download.</div>
         </div>
       </div>
 
@@ -581,18 +583,13 @@
       </div>
     </section>
 
-    <section class="waitlist shell" id="waitlist">
+    <section class="waitlist shell" id="download">
       <div class="waitlist-panel reveal">
         <div class="waitlist-inner">
-          <div class="eyebrow">Early access</div>
-          <h2>Be first in the closet.</h2>
-          <p>Join the waitlist for the iPhone launch and we’ll send one email when it’s ready.</p>
-          <form class="form" id="waitlist-form" novalidate>
-            <input type="email" id="waitlist-email" name="email" required aria-label="Email address" placeholder="your@email.com" autocomplete="email" />
-            <button type="submit" id="waitlist-submit">Join the waitlist</button>
-          </form>
-          <p class="status" id="waitlist-status" role="status" aria-live="polite"></p>
-          <p class="form-note">No spam. One email when Moda is ready.</p>
+          <div class="eyebrow">Now on iPhone</div>
+          <h2>Your closet is waiting.</h2>
+          <p>Catalog what you own, log what you wear, and see what every piece is really worth. Free on the App Store.</p>
+          <a class="primary-cta store-cta" id="download-appstore-cta" href="https://apps.apple.com/us/app/moda-smart-wardrobe-outfits/id6780327914" target="_blank" rel="noopener">Get it on the App Store <span>→</span></a>
         </div>
       </div>
     </section>
@@ -624,6 +621,5 @@
   </script>
   <script src="config.js"></script>
   <script src="hero-cta.js"></script>
-  <script src="waitlist.js"></script>
 </body>
 </html>
