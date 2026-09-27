@@ -11,6 +11,6 @@
 // to the App Store badge and retires the TestFlight/waitlist CTAs.
 window.MODA_LANDING_CONFIG = {
   CTA_URL: null,
-  LAUNCHED: false,
+  LAUNCHED: true,
   APP_STORE_URL: "https://apps.apple.com/app/id6780327914",
 };
