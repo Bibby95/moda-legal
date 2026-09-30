@@ -293,9 +293,10 @@
       width: 230px; height: 230px; border-radius: 50%;
       right: -70px; top: -70px; background: rgba(255,255,255,.46);
     }
-    .stage .phone { width: 306px; left: 50%; top: 52%; transform: translate(-50%, -50%) rotate(-2deg); }
-    .stage.planner .phone { transform: translate(-50%, -50%) rotate(2deg); }
-    .stage.value .phone { transform: translate(-50%, -50%) rotate(-1.5deg); }
+    /* --py is driven by motion.js for the scroll parallax; it stays 0 without JS. */
+    .stage .phone { width: 306px; left: 50%; top: 52%; transform: translate(-50%, calc(-50% + var(--py, 0px))) rotate(-2deg); }
+    .stage.planner .phone { transform: translate(-50%, calc(-50% + var(--py, 0px))) rotate(2deg); }
+    .stage.value .phone { transform: translate(-50%, calc(-50% + var(--py, 0px))) rotate(-1.5deg); }
     .floating-card {
       position: absolute;
       padding: 18px 20px;
@@ -425,6 +426,8 @@
 
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
+    /* Once motion.js is live it owns these blocks; the CSS transition would double up. */
+    html.motion-ready .reveal { transition: none; }
 
     @media (max-width: 1040px) {
       .hero { grid-template-columns: 1fr; padding-top: 88px; }
@@ -606,18 +609,34 @@
     </div>
   </footer>
 
+  <script type="module" src="motion.js"></script>
   <script>
-    const els = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
+    /* Failsafe. motion.js sets <html class="motion-ready"> as its first act. If it never
+       does — parse error, blocked module, anything — reveal the whole page with the plain
+       IntersectionObserver so nothing is ever left invisible. */
+    (function () {
+      var done = false;
+      function fallback() {
+        if (done || document.documentElement.classList.contains('motion-ready')) return;
+        done = true;
+        var els = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(function (el) { el.classList.add('visible'); });
+          return;
         }
-      });
-    }, { threshold: 0.13 });
-    els.forEach(el => io.observe(el));
-
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.13 });
+        els.forEach(function (el) { io.observe(el); });
+      }
+      window.addEventListener('error', fallback, true);
+      setTimeout(fallback, 900);
+    })();
   </script>
   <script src="config.js"></script>
   <script src="hero-cta.js"></script>
