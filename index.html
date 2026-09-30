@@ -428,6 +428,9 @@
     .reveal.visible { opacity: 1; transform: none; }
     /* Once motion.js is live it owns these blocks; the CSS transition would double up. */
     html.motion-ready .reveal { transition: none; }
+    /* Headline words, created by motion.js. Inline-block so they can transform;
+       whitespace stays as text nodes so line breaking is unchanged. */
+    .word { display: inline-block; transform-origin: 50% 100%; will-change: transform, opacity, filter; }
 
     @media (max-width: 1040px) {
       .hero { grid-template-columns: 1fr; padding-top: 88px; }

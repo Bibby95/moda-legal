@@ -40,6 +40,38 @@ function start() {
    * explicit value, and any rotation the stylesheet authored is read back and carried
    * through so the composition survives.
    */
+  /**
+   * Wrap every word in an inline-block span without flattening the markup —
+   * the headline contains an <em> that has to survive. Whitespace stays as text
+   * nodes so line breaking is unchanged.
+   */
+  function splitIntoWords(root) {
+    const words = [];
+    (function walk(node) {
+      [...node.childNodes].forEach((child) => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach((token) => {
+            if (!token) return;
+            if (/^\s+$/.test(token)) {
+              frag.appendChild(document.createTextNode(token));
+              return;
+            }
+            const span = document.createElement("span");
+            span.className = "word";
+            span.textContent = token;
+            frag.appendChild(span);
+            words.push(span);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          walk(child);
+        }
+      });
+    })(root);
+    return words;
+  }
+
   function restingTransform(el) {
     const t = getComputedStyle(el).transform;
     if (!t || t === "none") return { rotate: 0, rest: "translateY(0px) scale(1)" };
@@ -56,14 +88,32 @@ function start() {
 
   if (heroText) {
     heroText.classList.add("visible");
-    const lines = heroText.querySelectorAll(
-      ".eyebrow, h1, .hero-copy, .hero-actions"
-    );
+    const lines = heroText.querySelectorAll(".eyebrow, .hero-copy, .hero-actions");
     animate(
       lines,
       { opacity: [0, 1], transform: ["translateY(18px)", "translateY(0px)"] },
       { duration: 0.75, delay: stagger(0.08, { startDelay: 0.05 }), ease: EASE_OUT }
     );
+
+    // Headline cascades word by word. Ported from componentry.dev `letter-cascade`
+    // (rotateX + blur + spring 220/16), stepped up from letters to words: at this
+    // size, per-letter reads as a gimmick and it would fragment the <em>.
+    const h1 = heroText.querySelector("h1");
+    if (h1) {
+      const words = splitIntoWords(h1);
+      animate(
+        words,
+        {
+          opacity: [0, 1],
+          transform: [
+            "perspective(800px) rotateX(90deg) translateY(-6px)",
+            "perspective(800px) rotateX(0deg) translateY(0px)",
+          ],
+          filter: ["blur(4px)", "blur(0px)"],
+        },
+        { type: "spring", stiffness: 220, damping: 16, delay: stagger(0.05, { startDelay: 0.1 }) }
+      );
+    }
   }
 
   if (heroArt) {
@@ -260,7 +310,73 @@ function start() {
   });
 
   /* ---------------------------------------------------------------
-   * 5. Product stages lift a touch as they pass through the viewport.
+   * 5. Marquee reacts to scroll. Ported from componentry.dev
+   *    `scroll-based-velocity`: it drifts on its own, reverses with scroll
+   *    direction, and speeds up with scroll velocity. Same velocity->factor
+   *    mapping as the original ([0,1000] -> [0,5]); the React spring is replaced
+   *    with per-frame smoothing.
+   * ------------------------------------------------------------- */
+  (function marquee() {
+    const track = document.querySelector(".marquee > div");
+    if (!track) return;
+
+    const source = track.innerHTML;
+    track.style.display = "inline-block";
+    track.style.willChange = "transform";
+
+    // Repeat until ONE copy is wider than the viewport, otherwise the wrap leaves a
+    // visible gap on wide screens. Wrapping on the width of a single copy keeps the
+    // seam invisible no matter how many copies there are.
+    let unit = 0;
+    function layout() {
+      track.innerHTML = source;
+      const single = track.scrollWidth;
+      if (!single) return;
+      const copies = Math.max(2, Math.ceil(window.innerWidth / single) + 1);
+      track.innerHTML = new Array(copies).fill(source).join("");
+      unit = track.scrollWidth / copies;
+    }
+    layout();
+    let resizeTimer = 0;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layout, 150);
+    });
+
+    const BASE = 34; // px/sec at rest
+    let x = 0, direction = 1, velocity = 0;
+    let lastY = window.scrollY, lastT = performance.now();
+
+    requestAnimationFrame(function frame(now) {
+      const dt = Math.min((now - lastT) / 1000, 0.05);
+      lastT = now;
+
+      const y = window.scrollY;
+      const raw = dt > 0 ? (y - lastY) / dt : 0;
+      lastY = y;
+      velocity += (raw - velocity) * 0.12;
+
+      const factor = (velocity / 1000) * 5;
+      if (factor < 0) direction = -1;
+      else if (factor > 0) direction = 1;
+
+      let moveBy = direction * BASE * dt;
+      // Signed factor, exactly as the original. Using Math.abs() here cancels the
+      // direction flip instead of amplifying it, and the marquee never reverses.
+      moveBy += direction * moveBy * factor;
+
+      x -= moveBy;
+      if (unit) {
+        x %= unit;
+        if (x > 0) x -= unit;
+      }
+      track.style.transform = `translateX(${x.toFixed(2)}px)`;
+      requestAnimationFrame(frame);
+    });
+  })();
+
+  /* ---------------------------------------------------------------
+   * 6. Product stages lift a touch as they pass through the viewport.
    * ------------------------------------------------------------- */
   // Driven through the --py custom property so the stylesheet keeps ownership of the
   // centring translate and the tilt. Writing `transform` here would wipe both.
