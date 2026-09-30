@@ -248,6 +248,17 @@
     .feature.reverse .feature-copy { order: 2; }
     .feature.reverse .stage { order: 1; }
 
+    /* Sticky copy column. The stage is the taller of the two, so the copy is what
+       pins: it holds at eye level while the phone art scrolls past it. Desktop only —
+       below 1040px the feature collapses to one column and there is nothing to pin
+       against. Deliberately uses `top` and not a transform, because motion.js writes
+       transforms onto this block's children and a transform here would create a new
+       containing block for the floating cards. */
+    @media (min-width: 1041px) {
+      .feature { align-items: start; }
+      .feature-copy { position: sticky; top: 16vh; }
+    }
+
     .index {
       font-size: .72rem;
       letter-spacing: .14em;
@@ -293,9 +304,10 @@
       width: 230px; height: 230px; border-radius: 50%;
       right: -70px; top: -70px; background: rgba(255,255,255,.46);
     }
-    .stage .phone { width: 306px; left: 50%; top: 52%; transform: translate(-50%, -50%) rotate(-2deg); }
-    .stage.planner .phone { transform: translate(-50%, -50%) rotate(2deg); }
-    .stage.value .phone { transform: translate(-50%, -50%) rotate(-1.5deg); }
+    /* --py is driven by motion.js for the scroll parallax; it stays 0 without JS. */
+    .stage .phone { width: 306px; left: 50%; top: 52%; transform: translate(-50%, calc(-50% + var(--py, 0px))) rotate(-2deg); }
+    .stage.planner .phone { transform: translate(-50%, calc(-50% + var(--py, 0px))) rotate(2deg); }
+    .stage.value .phone { transform: translate(-50%, calc(-50% + var(--py, 0px))) rotate(-1.5deg); }
     .floating-card {
       position: absolute;
       padding: 18px 20px;
@@ -331,6 +343,10 @@
     }
     .signal-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 70px; align-items: end; }
     .signal-copy h2 { max-width: 690px; }
+    /* The morphing tail of the headline. inline-block so it can be transformed;
+       the authored text is the FINAL phrase, so no-JS and reduced-motion both land
+       on the real sentence. motion.js reserves the width of the widest phrase. */
+    .morph { display: inline-block; will-change: transform, opacity, filter; }
     .signal-copy p { color: rgba(255,255,255,.62); max-width: 550px; font-size: 1.05rem; line-height: 1.6; margin-top: 24px; }
     .stats { display: grid; gap: 14px; }
     .stat {
@@ -425,6 +441,11 @@
 
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
+    /* Once motion.js is live it owns these blocks; the CSS transition would double up. */
+    html.motion-ready .reveal { transition: none; }
+    /* Headline words, created by motion.js. Inline-block so they can transform;
+       whitespace stays as text nodes so line breaking is unchanged. */
+    .word { display: inline-block; transform-origin: 50% 100%; will-change: transform, opacity, filter; }
 
     @media (max-width: 1040px) {
       .hero { grid-template-columns: 1fr; padding-top: 88px; }
@@ -572,7 +593,7 @@
       <div class="signal-grid shell reveal">
         <div class="signal-copy">
           <div class="eyebrow" style="color:var(--acid)">The Moda moment</div>
-          <h2>Your closet is already telling you what matters.</h2>
+          <h2>Your closet is already telling you what <span class="morph" data-morph="you wear.|you avoid.">matters.</span></h2>
           <p>Moda turns your wardrobe into feedback: what you reach for, what earns its price, and where your money is sitting unused.</p>
         </div>
         <div class="stats" aria-label="Example wardrobe statistics">
@@ -606,18 +627,34 @@
     </div>
   </footer>
 
+  <script type="module" src="motion.js"></script>
   <script>
-    const els = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
+    /* Failsafe. motion.js sets <html class="motion-ready"> as its first act. If it never
+       does — parse error, blocked module, anything — reveal the whole page with the plain
+       IntersectionObserver so nothing is ever left invisible. */
+    (function () {
+      var done = false;
+      function fallback() {
+        if (done || document.documentElement.classList.contains('motion-ready')) return;
+        done = true;
+        var els = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          els.forEach(function (el) { el.classList.add('visible'); });
+          return;
         }
-      });
-    }, { threshold: 0.13 });
-    els.forEach(el => io.observe(el));
-
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.13 });
+        els.forEach(function (el) { io.observe(el); });
+      }
+      window.addEventListener('error', fallback, true);
+      setTimeout(fallback, 900);
+    })();
   </script>
   <script src="config.js"></script>
   <script src="hero-cta.js"></script>
