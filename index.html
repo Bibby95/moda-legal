@@ -248,6 +248,17 @@
     .feature.reverse .feature-copy { order: 2; }
     .feature.reverse .stage { order: 1; }
 
+    /* Sticky copy column. The stage is the taller of the two, so the copy is what
+       pins: it holds at eye level while the phone art scrolls past it. Desktop only —
+       below 1040px the feature collapses to one column and there is nothing to pin
+       against. Deliberately uses `top` and not a transform, because motion.js writes
+       transforms onto this block's children and a transform here would create a new
+       containing block for the floating cards. */
+    @media (min-width: 1041px) {
+      .feature { align-items: start; }
+      .feature-copy { position: sticky; top: 16vh; }
+    }
+
     .index {
       font-size: .72rem;
       letter-spacing: .14em;
@@ -332,6 +343,10 @@
     }
     .signal-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr .85fr; gap: 70px; align-items: end; }
     .signal-copy h2 { max-width: 690px; }
+    /* The morphing tail of the headline. inline-block so it can be transformed;
+       the authored text is the FINAL phrase, so no-JS and reduced-motion both land
+       on the real sentence. motion.js reserves the width of the widest phrase. */
+    .morph { display: inline-block; will-change: transform, opacity, filter; }
     .signal-copy p { color: rgba(255,255,255,.62); max-width: 550px; font-size: 1.05rem; line-height: 1.6; margin-top: 24px; }
     .stats { display: grid; gap: 14px; }
     .stat {
@@ -578,7 +593,7 @@
       <div class="signal-grid shell reveal">
         <div class="signal-copy">
           <div class="eyebrow" style="color:var(--acid)">The Moda moment</div>
-          <h2>Your closet is already telling you what matters.</h2>
+          <h2>Your closet is already telling you what <span class="morph" data-morph="you wear.|you avoid.">matters.</span></h2>
           <p>Moda turns your wardrobe into feedback: what you reach for, what earns its price, and where your money is sitting unused.</p>
         </div>
         <div class="stats" aria-label="Example wardrobe statistics">

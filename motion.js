@@ -386,4 +386,78 @@ function start() {
       { target: phone.closest(".stage"), offset: ["start end", "end start"] }
     );
   });
+
+  /* ---------------------------------------------------------------
+   * 7. Headline text morph. Ported from componentry.dev `text-morph`.
+   * ------------------------------------------------------------- */
+  // The authored HTML holds the FINAL phrase, and the cycle always ends there. That way
+  // no-JS, reduced-motion, a thrown module and a crawler all read the real sentence —
+  // the morph only visits the earlier phrases on the way to the copy that shipped.
+  document.querySelectorAll(".morph").forEach((el) => {
+    const final = el.textContent;
+    const phrases = [...el.dataset.morph.split("|").map((s) => s.trim()), final];
+    if (phrases.length < 2) return;
+
+    // Reserve the widest phrase up front so a longer word cannot reflow the headline
+    // mid-animation. min-width only — setting `display` here would undo the CSS.
+    const probe = el.cloneNode(false);
+    probe.style.cssText = "position:absolute;visibility:hidden;white-space:pre;min-width:0";
+    el.after(probe);
+    let widest = 0;
+    for (const p of phrases) {
+      probe.textContent = p;
+      widest = Math.max(widest, probe.getBoundingClientRect().width);
+    }
+    probe.remove();
+    el.style.minWidth = `${Math.ceil(widest)}px`;
+
+    let fired = false;
+    inView(
+      el,
+      () => {
+        if (fired) return;
+        fired = true;
+
+        // Start on the first phrase, then step forward. The section reveal is still
+        // settling for ~0.7s, so the first swap waits for it rather than fighting it.
+        el.textContent = phrases[0];
+        let i = 0;
+
+        // Safety net: the headline must never be left sitting on an intermediate phrase.
+        // Backgrounded tabs throttle timers, so if the cycle has not reached the end by
+        // the time it should have, or the tab is hidden, snap to the shipped copy.
+        const land = () => {
+          i = phrases.length - 1;
+          el.textContent = final;
+          el.style.opacity = "1";
+          el.style.filter = "none";
+        };
+        const bail = setTimeout(land, 900 + phrases.length * 2000);
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) { clearTimeout(bail); land(); }
+        });
+
+        const step = async () => {
+          if (i >= phrases.length - 1) return;
+          i += 1;
+          await animate(
+            el,
+            { opacity: [1, 0], transform: ["translateY(0px)", "translateY(-14px)"], filter: ["blur(0px)", "blur(6px)"] },
+            { duration: 0.34, ease: EASE_OUT }
+          ).finished;
+          el.textContent = phrases[i];
+          await animate(
+            el,
+            { opacity: [0, 1], transform: ["translateY(14px)", "translateY(0px)"], filter: ["blur(6px)", "blur(0px)"] },
+            { duration: 0.42, ease: EASE_OUT }
+          ).finished;
+          if (i < phrases.length - 1) setTimeout(step, 1100);
+          else clearTimeout(bail);
+        };
+
+        setTimeout(step, 900);
+      },
+      { amount: 0.6 }
+    );
+  });
 }
